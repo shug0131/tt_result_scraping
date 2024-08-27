@@ -27,4 +27,18 @@ events <- events %>%
           ) 
 
 #  SO now need to compare to previous data, and see if you have to load the next page or whatever...
-  
+
+# if date is between 1-7 jan then do reset
+dy <- Sys.Date() %>% as.Date %>% day
+mth <- Sys.Date() %>% as.Date %>% month()
+yr <- Sys.Date() %>% as.Date %>% year()
+mth==1 & 1<= dy & dy<=7
+
+# Do reset
+
+# Check on how far back to read in results.
+# How rapid is the website at putting up the results, and risks of missing a row that
+# is entered late.  WIth a weekly update, go back a week earlier than the last date of check.
+# Handle the event that the checks aren't sucessful- website down, code fails, github changes somethign...
+
+

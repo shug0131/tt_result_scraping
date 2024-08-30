@@ -38,6 +38,13 @@ top_five %>%
   kable_styling() %>% 
   column_spec(6, link=top_five$url)
 
+write.csv(all_times, file="all_results.csv", row.names = FALSE)
 
 ```
 
+# Data
+
+The complete set of data for Cambridge CC riders is 
+```{=html}
+<a href="all_results.csv" download="all_results.csv"> here </a>
+```

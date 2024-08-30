@@ -1,0 +1,43 @@
+---
+title: "Cambridge CC Fastest Times"
+author: "Simon Bond"
+format: html
+---
+
+# Purpose
+
+This is the output from an automated check of results on <https://www.cyclingtimetrials.org.uk/find-results>. This happens once a week in the early hours of a monday.  It goes back one week earlier than the previous check's last date, and then trawls through the new ones to pick up results from members of Cambridge CC. 
+
+An annual prize is awarded to the fastest time that year for several distances. Checking by hand is time consuming, so I wrote this code. 
+
+# Results
+
+This document was generated on `r Sys.time()` .
+
+```{r process}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(kableExtra)
+load( "all_times.rds")
+
+top_five <- all_times %>% 
+  mutate( hrs = str_split_i(Time,":",1) %>% as.numeric,
+          mins =str_split_i(Time,":",2)%>% as.numeric,
+          sec =str_split_i(Time,":",3)%>% as.numeric
+          ) %>% 
+  arrange(distance, hrs, mins, sec) %>% 
+  group_by(distance) %>% 
+  slice_head(n=5) %>% 
+  select(distance, Time, `First Name`, `Last Name`,Position,url) %>% 
+  as.data.frame 
+top_five %>% 
+  kbl() %>% 
+  kable_styling() %>% 
+  column_spec(6, link=top_five$url)
+
+
+```
+

@@ -98,12 +98,6 @@ save(all_times, file="all_times.rds")
 
 ###  now process the records to get the top 10 times at each distance
 ## create a web page from it. 
+#renv::install("quarto")
 
-top_five <- all_times %>% 
-  mutate( hrs = str_split_i(Time,":",1) %>% as.numeric,
-          mins =str_split_i(Time,":",2)%>% as.numeric,
-          sec =str_split_i(Time,":",3)%>% as.numeric
-          ) %>% 
-  arrange(distance, hrs, mins, sec) %>% 
-  group_by(distance) %>% 
-  slice_head(n=5)
+quarto::quarto_render("webpage.qmd")

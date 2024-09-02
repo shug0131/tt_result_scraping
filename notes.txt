@@ -1,0 +1,22 @@
+See https://github.com/shug0131/rocker-versioned2/blob/master/Makefile
+
+line 78 maybe for build webpages in actions
+
+using the wiki means the project has to be public, and wiki enabled. Both done with
+settings
+
+Creates a new repo.  Consider making this a submodule to move the files i generate
+maybe other ways to do this...
+https://stackoverflow.com/questions/30610434/updating-github-wiki-file-through-git?rq=3
+
+git submodule add http://....
+
+cd .../tt_resi;st//
+copy webpage.html  tt_results.wiki/results.html
+cd tt-results.wiki
+git add *
+git comit
+git push
+
+
+works, but get a raw html rather than a rendered page...

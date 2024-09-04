@@ -1,7 +1,8 @@
 ---
 title: "Cambridge CC Fastest Times"
 author: "Simon Bond"
-format: html
+format: gfm
+prefer-html: true
 ---
 
 # Purpose
@@ -38,7 +39,6 @@ top_five %>%
   kable_styling() %>% 
   column_spec(6, link=top_five$url)
 
-write.csv(all_times, file="all_results.csv", row.names = FALSE)
 
 ```
 

@@ -20,3 +20,9 @@ git push
 
 
 works, but get a raw html rather than a rendered page...
+need to use format: gfm   (quarto)  the rmd is output: github_document
+
+
+
+https://rfortherestofus.com/2023/05/github-actions
+

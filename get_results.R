@@ -100,4 +100,8 @@ save(all_times, file="all_times.rds")
 ## create a web page from it. 
 #renv::install("quarto")
 
-quarto::quarto_render("webpage.qmd")
+
+
+quarto::quarto_render()
+
+write.csv(all_times, file="tt_result_scraping.wiki/all_results.csv", row.names = FALSE)

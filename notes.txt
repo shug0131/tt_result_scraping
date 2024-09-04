@@ -26,3 +26,9 @@ need to use format: gfm   (quarto)  the rmd is output: github_document
 
 https://rfortherestofus.com/2023/05/github-actions
 
+jUST NEED TO WOrk out how to update the wiki in github actions
+
+https://spinscale.de/posts/2021-10-29-github-actions-updating-github-wiki-after-edit.html
+
+maybe
+

@@ -32,3 +32,13 @@ https://spinscale.de/posts/2021-10-29-github-actions-updating-github-wiki-after-
 
 maybe
 
+---
+
+Tidy up output formats.  Put time/date in local UK time
+Chcek up on actual results updates in main repo
+put date stamp on the commit message
+work out how to do the annual archive and refresh
+wiki home page on how it works for future reference for someone to take over
+link to google notes
+Add the CCC event results ??
+

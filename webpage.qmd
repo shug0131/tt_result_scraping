@@ -1,5 +1,7 @@
 ---
 title: "Cambridge CC Fastest Times"
+date: today
+date-format: "YYYY"
 author: "Simon Bond"
 format: gfm
 prefer-html: true
@@ -13,7 +15,6 @@ An annual prize is awarded to the fastest time that year for several distances. 
 
 # Results
 
-This document was generated on `r Sys.time()` .
 
 ```{r process}
 #| echo: false
@@ -39,8 +40,12 @@ top_five %>%
   kable_styling() %>% 
   column_spec(6, link=top_five$url)
 
+Sys.setenv(TZ="Europe/London")
 
 ```
+
+This document was generated on `r Sys.time()` .
+
 
 # Data
 

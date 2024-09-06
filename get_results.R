@@ -23,6 +23,12 @@ if(mth==1 & 1<= dy & dy<=7){
   all_times <- data.frame()
   # archive the old website record...
   # or maybe do the entire reset witin a github action..
+  
+  # save teh all_times
+  # put copies of the files webpage.md and all_times.csv
+  # into the wiki with appended year in the file name
+  
+  
 }
 # Check on how far back to read in results.
 # How rapid is the website at putting up the results, and risks of missing a row that
@@ -57,7 +63,9 @@ while( continue){
   i <- i+1
   #  now process the results on each link
   
-  current <- events %>% filter( Distance %in% c("10 miles","25 miles", "50 miles", "100 miles"))
+  current <- events %>% 
+    filter( Distance %in% c("10 miles","25 miles", "50 miles", "100 miles"),
+            year(date)==yr) # to cope with stop date being in last year in the first week.
   
   
   for( j in 1:nrow(current)){

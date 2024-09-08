@@ -44,3 +44,5 @@ link to google notes
 Add the CCC event results ??
 get a minimal set of packages for teh gh action, and not use renv - want the latest packages and R version for an easy versioning
 check if subdirectory of wiki submodile makes sense..
+
+might have set up notification by email if something changes -push events.

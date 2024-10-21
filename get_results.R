@@ -67,7 +67,7 @@ while( continue){
     filter( Distance %in% c("10 miles","25 miles", "50 miles", "100 miles"),
             year(date)==yr) # to cope with stop date being in last year in the first week.
   
-  
+  if( 0< nrow(current)){
   for( j in 1:nrow(current)){
     url <- paste0("https://www.cyclingtimetrials.org.uk", current[j,"link"])
     page_event <- read_html(url)
@@ -86,8 +86,7 @@ while( continue){
     
     new_times <- bind_rows(new_times,times)
   }
-  
-  
+ }
 }
 stop_date <- new_stop_date
 save(stop_date, file="stop_date.rds")     

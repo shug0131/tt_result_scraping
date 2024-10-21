@@ -65,7 +65,8 @@ while( continue){
   
   current <- events %>% 
     filter( Distance %in% c("10 miles","25 miles", "50 miles", "100 miles"),
-            year(date)==yr) # to cope with stop date being in last year in the first week.
+            year(date)==yr) %>% # to cope with stop date being in last year in the first week.
+            drop_na()
   
   if( 0< nrow(current)){
   for( j in 1:nrow(current)){

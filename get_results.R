@@ -44,8 +44,9 @@ new_times <- data.frame()
 
 i <- 1
 while( continue){
-  message("lookup step 1")
+  message("lookup step 1",i)
   page <- read_html(paste0("https://www.cyclingtimetrials.org.uk/find-results?page=",i))
+  message( "Post read")
   events <-page %>% 
     html_element("table") %>% 
     html_table
@@ -72,9 +73,10 @@ while( continue){
   
   if( 0< nrow(current)){
   for( j in 1:nrow(current)){
-    message(url)
+    
     
     url <- paste0("https://www.cyclingtimetrials.org.uk", current[j,"link"])
+    message(url)
     page_event <- read_html(url)
     times <- page_event %>% 
       html_element("table") %>% 

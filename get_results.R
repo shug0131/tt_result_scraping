@@ -116,7 +116,7 @@ save(all_times, file="all_times.rds")
 
 
 
-quarto::quarto_render(output_file = paste0("Fastest Times ",yr))
+quarto::quarto_render(output_file = paste0("Fastest Times ",yr,".md"))
 
 write.csv(all_times, file=paste0("tt_result_scraping.wiki/all_results_",yr,".csv"), 
           row.names = FALSE)

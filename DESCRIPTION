@@ -7,7 +7,9 @@ Authors@R:
 Description: For Cambridge CC trophy secretary to work out who wins what awards
 Imports: 
     rvest
-    tidyverse
+    magrittr
+    lubridate
+    dplyr
+    tidyr
     quarto
     kableExtra
-    

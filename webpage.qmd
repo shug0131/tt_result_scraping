@@ -41,7 +41,7 @@ top_five %>%
   column_spec(6, link=top_five$url)
 
 Sys.setenv(TZ="Europe/London")
-
+yr <- Sys.Date() %>% as.Date %>% year()
 ```
 
 This document was generated on `r Sys.time()` .
@@ -50,6 +50,9 @@ This document was generated on `r Sys.time()` .
 # Data
 
 The complete set of data for Cambridge CC riders is 
-```{=html}
-<a href="all_results.csv" download="all_results.csv"> here </a>
+```{r, echo=FALSE, results='asis'}
+filename <- paste0("tt_result_scraping.wiki/all_results_",yr,".csv")
+cat(paste0('<a href="all_results_',yr,'.csv" download="all_results_',yr,'.csv"> here </a>'))
 ```
+
+

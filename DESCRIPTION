@@ -1,0 +1,13 @@
+Package: ttresultscraping
+Title: Scrapes TT results
+Version: 1.0
+Authors@R: 
+  person("Simon ", "Bond", , "shug0131@gmail.com", role = c("aut", "cre"),
+  )
+Description: For Cambridge CC trophy secretary to work out who wins what awards
+Imports: 
+    rvest
+    tidyverse
+    quarto
+    kableExtra
+    

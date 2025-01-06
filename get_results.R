@@ -104,7 +104,11 @@ save(stop_date, file="stop_date.rds")
 ##join up with the previous set of records
 
 load( "all_times.rds")
-
+if(mth==1 & 1<= dy & dy<=7){
+all_times <- all_times[0,]
+#do a reset
+}
+  
 all_times <- bind_rows(all_times, new_times) %>% 
   distinct()
 save(all_times, file="all_times.rds")

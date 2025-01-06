@@ -35,10 +35,13 @@ top_five <- all_times %>%
   slice_head(n=5) %>% 
   select(distance, Time, `First Name`, `Last Name`,Position,url) %>% 
   as.data.frame 
+
+if( 0< nrow(top_five) ){ 
 top_five %>% 
   kbl() %>% 
   kable_styling() %>% 
   column_spec(6, link=top_five$url)
+}
 
 Sys.setenv(TZ="Europe/London")
 yr <- Sys.Date() %>% as.Date %>% year()

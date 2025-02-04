@@ -8,7 +8,7 @@
 # Update the dates of events considered
 # then follow links to valid event
 #  search for Cambridge CC and take the relevant data if present
-rm(list=ls())
+# rm(list=ls())
 library(tidyverse)
 library(rvest)
 
@@ -44,8 +44,8 @@ new_times <- data.frame()
 
 i <- 1
 while( continue){
-  message("lookup step 1",i)
-  page <- read_html(paste0("https://www.cyclingtimetrials.org.uk/find-results?page=",i))
+  message("lookup step ",i)
+  page <- read_html(paste0("https://www.cyclingtimetrials.org.uk/event-finder?interval=",yr,"-01-01%2F",yr,"-12-31"))
   message( "Post read")
   events <-page %>% 
     html_element("table") %>% 
@@ -74,7 +74,7 @@ while( continue){
   if( 0< nrow(current)){
   for( j in 1:nrow(current)){
     
-    
+    url <- "https://www.cyclingtimetrials.org.uk/events/14306-stafford-rc-5"
     url <- paste0("https://www.cyclingtimetrials.org.uk", current[j,"link"])
     message(url)
     page_event <- read_html(url)

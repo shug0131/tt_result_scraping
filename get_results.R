@@ -45,21 +45,39 @@ new_times <- data.frame()
 i <- 1
 while( continue){
   message("lookup step ",i)
-  page <- read_html(paste0("https://www.cyclingtimetrials.org.uk/event-finder?interval=",yr,"-01-01%2F",yr,"-12-31"))
+  page <- read_html(paste0("https://www.cyclingtimetrials.org.uk/results-finder?interval=",yr,"-01-01%2F",yr,"-12-31"))
   message( "Post read")
-  events <-page %>% 
-    html_element("table") %>% 
-    html_table
-  events <- events[,-5]
+  page %>% html_elements(".truncate") %>% 
+    html_text()
   
-  links <-page %>% 
-    html_element("table")  %>% html_elements("a") %>% 
-    html_attr(name="href") %>%
-    grep("race-results",. , value=TRUE)
-  events <- events %>% 
-    mutate( date= as.Date(`Date/Time`, format= "%d %b %y"),
-            link=links
-    )
+  event_dates <- page %>% html_elements(".dark\\:text-neutral-100.w-32") %>% 
+    html_text() %>% 
+    as.Date(format="%b %d, %Y")
+  
+  links <- page %>% html_elements("a") %>% 
+    html_attr("href") %>% 
+    grep("/events/", ., value=TRUE) %>% 
+    unique
+  
+  # This is totally reliant on the order working with no missing values
+  # to match up the date to the event link. 
+  
+  events <- data.frame(date=event_dates, link=links) %>% 
+    filter( as.Date("2025-01-01")<= date)
+  
+  # events <-page %>% 
+  #   html_element("table") %>% 
+  #   html_table
+  # events <- events[,-5]
+  # 
+  # links <-page %>% 
+  #   html_element("table")  %>% html_elements("a") %>% 
+  #   html_attr(name="href") %>%
+  #   grep("race-results",. , value=TRUE)
+  # events <- events %>% 
+  #   mutate( date= as.Date(`Date/Time`, format= "%d %b %y"),
+  #           link=links
+  #   )
  if( i ==1){ new_stop_date <- max(events$date) - weeks(1) }
   continue <- any(stop_date< events$date)
   i <- i+1

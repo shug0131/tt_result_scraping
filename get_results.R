@@ -63,7 +63,7 @@ while( continue){
   # to match up the date to the event link. 
   
   events <- data.frame(date=event_dates, link=links) %>% 
-    filter( as.Date("2025-01-01")<= date)
+    filter( as.Date(paste0(yr,"-01-01"))<= date)
   
   # events <-page %>% 
   #   html_element("table") %>% 

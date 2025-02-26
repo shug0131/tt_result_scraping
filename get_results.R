@@ -52,7 +52,7 @@ while( continue){
   
   event_dates <- page %>% html_elements(".dark\\:text-neutral-100.w-32") %>% 
     html_text() %>% 
-    as.Date(format="%b %d, %Y")
+    as.Date(format="%d %b  %Y")
   
   links <- page %>% html_elements("a") %>% 
     html_attr("href") %>% 
@@ -92,10 +92,26 @@ while( continue){
   if( 0< nrow(current)){
   for( j in 1:nrow(current)){
     
+    
+    url <- paste0("https://www.cyclingtimetrials.org.uk", links[1])
+    
     url <- "https://www.cyclingtimetrials.org.uk/events/14306-stafford-rc-5"
     url <- paste0("https://www.cyclingtimetrials.org.uk", current[j,"link"])
     message(url)
     page_event <- read_html(url)
+    
+    page_event |> html_elements("section")
+    text_list <- page_event |> html_elements("script") |> 
+      html_text()
+    library(jsonlite)
+    
+    fromJSON(text_list[79])
+    
+    
+    page_event |> html_elements("flex-grow flex flex-col")
+    page_event |> html_elements("body") |>  html_elements("section")
+      html_text()
+    
     times <- page_event %>% 
       html_element("table") %>% 
       html_table

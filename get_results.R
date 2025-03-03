@@ -45,7 +45,35 @@ new_times <- data.frame()
 i <- 1
 while( continue){
   message("lookup step ",i)
-  page <- read_html(paste0("https://www.cyclingtimetrials.org.uk/results-finder?interval=",yr,"-01-01%2F",yr,"-12-31"))
+  page <-  read_html( "https://www.spindata.co.uk/events")
+  
+  # might want to force the page number and or number of results per page. 
+  
+  events <- page %>% html_element("table") %>% 
+    html_table()
+  events <- events[1:20,]
+  x <- events$Event
+  event_date <- events$Date %>% as.Date(format="%d %b %Y")
+  
+  links <- page %>% html_element("table") %>% 
+    html_elements("a") %>% 
+    html_attr("href")
+  
+  dist <- events[[4]] %>% 
+    gsub(".*\\s(.*)m$","\\1",.) %>% 
+    as.numeric
+
+  
+  
+  df <- data.frame(date=event_date, 
+                   links=links[1:20],
+                   name= gsub("([^\r]*)\r.*","\\1", x),
+                   type=gsub(".*\t(\\w*$)","\\1", x),
+                   distance=dist
+                   ) %>% filter(type=="Results")
+  #  THis is ready for next step of looking up each event
+  
+  
   message( "Post read")
   page %>% html_elements(".truncate") %>% 
     html_text()
@@ -87,6 +115,8 @@ while( continue){
     filter( Distance %in% c("10 miles","25 miles", "50 miles", "100 miles"),
             year(date)==yr) %>% # to cope with stop date being in last year in the first week.
             drop_na()
+  
+  
   
   
   if( 0< nrow(current)){

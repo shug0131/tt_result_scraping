@@ -30,6 +30,23 @@ if(mth==1 & 1<= dy & dy<=7){
   
   
 }
+
+
+#https://www.cyclingtimetrials.org.uk/organisations/714-cambridge-cc?v=results
+
+buttons <- rvest::read_html("https://www.cyclingtimetrials.org.uk/organisations/714-cambridge-cc?v=results") |> 
+  rvest::html_elements("button")
+
+library(httr2)
+
+ans <- request("https://www.cyclingtimetrials.org.uk/organisations/714-cambridge-cc") |> 
+  req_url_query(v="results") |> 
+  req_perform()
+
+ans |> resp_
+
+read.csv(url("https://www.cyclingtimetrials.org.uk/organisations/714-cambridge-cc?v=results"))
+
 # Check on how far back to read in results.
 # How rapid is the website at putting up the results, and risks of missing a row that
 # is entered late.  WIth a weekly update, go back a week earlier than the last date of check.
